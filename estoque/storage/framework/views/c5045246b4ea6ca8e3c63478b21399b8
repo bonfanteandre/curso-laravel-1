@@ -1,0 +1,10 @@
+<?php $__env->startSection('conteudo'); ?>
+<h1>Detalhes do produto <?php echo e($produto->nome); ?> </h1>
+<ul>
+  <li>Descrição: <?php echo e(isset($produto->descricao) ? $produto->descricao : 'Produto sem descrição'); ?></li>
+  <li>Valor: R$ <?php echo e($produto->valor); ?></li>
+  <li>Quantidade: <?php echo e($produto->quantidade); ?></li>
+</ul>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('principal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

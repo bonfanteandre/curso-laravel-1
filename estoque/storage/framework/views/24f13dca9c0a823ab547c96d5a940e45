@@ -1,0 +1,38 @@
+<?php $__env->startSection('conteudo'); ?>
+<h1>Listagem de produtos</h1>
+  <?php if(empty($produtos)): ?>
+    <div class="alert alert-danger">
+      Nenhum produto cadastrado.
+    </div>
+  <?php else: ?>
+    <table class="table table-bordered table-hover">
+      <tr>
+        <th>Nome</th>
+        <th>Valor</th>
+        <th>Descrição</th>
+        <th>Quantidade</th>
+        <th></th>
+      </tr>
+      <?php foreach($produtos as $produto): ?>
+      <tr class="<?php echo e($produto->quantidade <= 1 ? 'danger' : ''); ?>">
+        <td> <?php echo e($produto->nome); ?> </td>
+        <td> <?php echo e($produto->valor); ?> </td>
+        <td> <?php echo e(isset($produto->descricao) ? $produto->descricao : 'Sem descrição'); ?> </td>
+        <td> <?php echo e($produto->quantidade); ?> </td>
+        <td>
+          <a href="/produtos/visualizar/<?php echo e($produto->id); ?>">
+            Visualizar
+          </a>
+        </td>
+      </tr>
+      <?php endforeach; ?>
+    </table>
+  <?php endif; ?>
+  <h4>
+    <span class="label label-danger pull-right">
+      Um ou menos itens no estoque
+    </span>
+  </h4>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('principal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
